@@ -1,0 +1,886 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="KYCApi" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="KYCApi" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="KYCApi">
+      <s:element name="UploadDocument">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="registrationNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="documentData" type="s:base64Binary" />
+            <s:element minOccurs="0" maxOccurs="1" name="documentName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="documentType" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="businessID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UploadDocumentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UploadDocumentResult" type="tns:APIResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="APIResponse">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Success" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Data" />
+          <s:element minOccurs="0" maxOccurs="1" name="DataTableProperty">
+            <s:complexType>
+              <s:sequence>
+                <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+              </s:sequence>
+            </s:complexType>
+          </s:element>
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ApproveDocument">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="documentId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ApproveDocumentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ApproveDocumentResult" type="tns:APIResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RejectDocument">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="documentId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RejectDocumentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RejectDocumentResult" type="tns:APIResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBusinessDetails">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="registrationNumber" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBusinessDetailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetBusinessDetailsResult" type="tns:APIResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateBusiness">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="businessDetails" type="tns:BusinessDetails" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="BusinessDetails">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CompanyName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CompanyRegistrationNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BusinessType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LicenseNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TIN" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StartDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Address" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LocationProof" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Phone" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Website" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MainBusinessActivity" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Industry" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="YearsInOperation" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="NumberOfEmployees" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="CompanyProfile" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CreateBusinessResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CreateBusinessResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateDirector">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="directorDetails" type="tns:Director" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Director">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="BusinessID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Surname" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="GivenName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DateOfBirth" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CardNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NIN" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SanctionStatus" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NiraStatus" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CreateDirectorResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateDirectorResult" type="tns:APIResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllBusinesses">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAllBusinessesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllBusinessesResult" type="tns:APIResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VerifyUserCredentials">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VerifyUserCredentialsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="VerifyUserCredentialsResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VerifyUserOTP">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="otp" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="VerifyOTPResponse">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="userDTO" type="tns:UserDTO" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="UserDTO">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="FirstName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="RoleId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="UserId" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="VerifyUserOTPResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="VerifyUserOTPResult" type="tns:VerifyOTPResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateDepartment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="departmentName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="createdBy" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateDepartmentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateDepartmentResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateRole">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="roleName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="roleDescription" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="createdBy" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="defaultPage" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateRoleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateRoleResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="firstName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="lastName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="departmentID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="roleID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="createdBy" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateUserResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDepartments">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetDepartmentsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDepartmentsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRoles">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetRolesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRolesResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUsers">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetUsersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUsersResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ValidateNationalId">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="dob" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="idNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="givenName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NIN" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="surname" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="NationalIDValidationResponse">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="StatusCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ValidateNationalIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ValidateNationalIdResult" type="tns:NationalIDValidationResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckUserSanctionStatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="_name" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SanctionsResponse">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="StatusCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Score" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Sanctioned" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CheckUserSanctionStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CheckUserSanctionStatusResult" type="tns:SanctionsResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetClientDetails">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetClientDetailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetClientDetailsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="UploadDocumentSoapIn">
+    <wsdl:part name="parameters" element="tns:UploadDocument" />
+  </wsdl:message>
+  <wsdl:message name="UploadDocumentSoapOut">
+    <wsdl:part name="parameters" element="tns:UploadDocumentResponse" />
+  </wsdl:message>
+  <wsdl:message name="ApproveDocumentSoapIn">
+    <wsdl:part name="parameters" element="tns:ApproveDocument" />
+  </wsdl:message>
+  <wsdl:message name="ApproveDocumentSoapOut">
+    <wsdl:part name="parameters" element="tns:ApproveDocumentResponse" />
+  </wsdl:message>
+  <wsdl:message name="RejectDocumentSoapIn">
+    <wsdl:part name="parameters" element="tns:RejectDocument" />
+  </wsdl:message>
+  <wsdl:message name="RejectDocumentSoapOut">
+    <wsdl:part name="parameters" element="tns:RejectDocumentResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetBusinessDetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetBusinessDetails" />
+  </wsdl:message>
+  <wsdl:message name="GetBusinessDetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetBusinessDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateBusinessSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateBusiness" />
+  </wsdl:message>
+  <wsdl:message name="CreateBusinessSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateBusinessResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateDirectorSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateDirector" />
+  </wsdl:message>
+  <wsdl:message name="CreateDirectorSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateDirectorResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllBusinessesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllBusinesses" />
+  </wsdl:message>
+  <wsdl:message name="GetAllBusinessesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllBusinessesResponse" />
+  </wsdl:message>
+  <wsdl:message name="VerifyUserCredentialsSoapIn">
+    <wsdl:part name="parameters" element="tns:VerifyUserCredentials" />
+  </wsdl:message>
+  <wsdl:message name="VerifyUserCredentialsSoapOut">
+    <wsdl:part name="parameters" element="tns:VerifyUserCredentialsResponse" />
+  </wsdl:message>
+  <wsdl:message name="VerifyUserOTPSoapIn">
+    <wsdl:part name="parameters" element="tns:VerifyUserOTP" />
+  </wsdl:message>
+  <wsdl:message name="VerifyUserOTPSoapOut">
+    <wsdl:part name="parameters" element="tns:VerifyUserOTPResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateDepartmentSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateDepartment" />
+  </wsdl:message>
+  <wsdl:message name="CreateDepartmentSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateDepartmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateRoleSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateRole" />
+  </wsdl:message>
+  <wsdl:message name="CreateRoleSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateRoleResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateUserSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateUser" />
+  </wsdl:message>
+  <wsdl:message name="CreateUserSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDepartmentsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDepartments" />
+  </wsdl:message>
+  <wsdl:message name="GetDepartmentsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDepartmentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRolesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRoles" />
+  </wsdl:message>
+  <wsdl:message name="GetRolesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRolesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUsersSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUsers" />
+  </wsdl:message>
+  <wsdl:message name="GetUsersSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUsersResponse" />
+  </wsdl:message>
+  <wsdl:message name="ValidateNationalIdSoapIn">
+    <wsdl:part name="parameters" element="tns:ValidateNationalId" />
+  </wsdl:message>
+  <wsdl:message name="ValidateNationalIdSoapOut">
+    <wsdl:part name="parameters" element="tns:ValidateNationalIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckUserSanctionStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckUserSanctionStatus" />
+  </wsdl:message>
+  <wsdl:message name="CheckUserSanctionStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckUserSanctionStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetClientDetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetClientDetails" />
+  </wsdl:message>
+  <wsdl:message name="GetClientDetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetClientDetailsResponse" />
+  </wsdl:message>
+  <wsdl:portType name="KYCApiSoap">
+    <wsdl:operation name="UploadDocument">
+      <wsdl:input message="tns:UploadDocumentSoapIn" />
+      <wsdl:output message="tns:UploadDocumentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ApproveDocument">
+      <wsdl:input message="tns:ApproveDocumentSoapIn" />
+      <wsdl:output message="tns:ApproveDocumentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RejectDocument">
+      <wsdl:input message="tns:RejectDocumentSoapIn" />
+      <wsdl:output message="tns:RejectDocumentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBusinessDetails">
+      <wsdl:input message="tns:GetBusinessDetailsSoapIn" />
+      <wsdl:output message="tns:GetBusinessDetailsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateBusiness">
+      <wsdl:input message="tns:CreateBusinessSoapIn" />
+      <wsdl:output message="tns:CreateBusinessSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateDirector">
+      <wsdl:input message="tns:CreateDirectorSoapIn" />
+      <wsdl:output message="tns:CreateDirectorSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllBusinesses">
+      <wsdl:input message="tns:GetAllBusinessesSoapIn" />
+      <wsdl:output message="tns:GetAllBusinessesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="VerifyUserCredentials">
+      <wsdl:input message="tns:VerifyUserCredentialsSoapIn" />
+      <wsdl:output message="tns:VerifyUserCredentialsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="VerifyUserOTP">
+      <wsdl:input message="tns:VerifyUserOTPSoapIn" />
+      <wsdl:output message="tns:VerifyUserOTPSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateDepartment">
+      <wsdl:input message="tns:CreateDepartmentSoapIn" />
+      <wsdl:output message="tns:CreateDepartmentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateRole">
+      <wsdl:input message="tns:CreateRoleSoapIn" />
+      <wsdl:output message="tns:CreateRoleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateUser">
+      <wsdl:input message="tns:CreateUserSoapIn" />
+      <wsdl:output message="tns:CreateUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDepartments">
+      <wsdl:input message="tns:GetDepartmentsSoapIn" />
+      <wsdl:output message="tns:GetDepartmentsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRoles">
+      <wsdl:input message="tns:GetRolesSoapIn" />
+      <wsdl:output message="tns:GetRolesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUsers">
+      <wsdl:input message="tns:GetUsersSoapIn" />
+      <wsdl:output message="tns:GetUsersSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidateNationalId">
+      <wsdl:input message="tns:ValidateNationalIdSoapIn" />
+      <wsdl:output message="tns:ValidateNationalIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckUserSanctionStatus">
+      <wsdl:input message="tns:CheckUserSanctionStatusSoapIn" />
+      <wsdl:output message="tns:CheckUserSanctionStatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetClientDetails">
+      <wsdl:input message="tns:GetClientDetailsSoapIn" />
+      <wsdl:output message="tns:GetClientDetailsSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="KYCApiSoap" type="tns:KYCApiSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="UploadDocument">
+      <soap:operation soapAction="KYCApi/UploadDocument" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ApproveDocument">
+      <soap:operation soapAction="KYCApi/ApproveDocument" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RejectDocument">
+      <soap:operation soapAction="KYCApi/RejectDocument" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBusinessDetails">
+      <soap:operation soapAction="KYCApi/GetBusinessDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateBusiness">
+      <soap:operation soapAction="KYCApi/CreateBusiness" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateDirector">
+      <soap:operation soapAction="KYCApi/CreateDirector" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllBusinesses">
+      <soap:operation soapAction="KYCApi/GetAllBusinesses" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerifyUserCredentials">
+      <soap:operation soapAction="KYCApi/VerifyUserCredentials" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerifyUserOTP">
+      <soap:operation soapAction="KYCApi/VerifyUserOTP" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateDepartment">
+      <soap:operation soapAction="KYCApi/CreateDepartment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateRole">
+      <soap:operation soapAction="KYCApi/CreateRole" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateUser">
+      <soap:operation soapAction="KYCApi/CreateUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDepartments">
+      <soap:operation soapAction="KYCApi/GetDepartments" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRoles">
+      <soap:operation soapAction="KYCApi/GetRoles" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsers">
+      <soap:operation soapAction="KYCApi/GetUsers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidateNationalId">
+      <soap:operation soapAction="KYCApi/ValidateNationalId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckUserSanctionStatus">
+      <soap:operation soapAction="KYCApi/CheckUserSanctionStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClientDetails">
+      <soap:operation soapAction="KYCApi/GetClientDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="KYCApiSoap12" type="tns:KYCApiSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="UploadDocument">
+      <soap12:operation soapAction="KYCApi/UploadDocument" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ApproveDocument">
+      <soap12:operation soapAction="KYCApi/ApproveDocument" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RejectDocument">
+      <soap12:operation soapAction="KYCApi/RejectDocument" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBusinessDetails">
+      <soap12:operation soapAction="KYCApi/GetBusinessDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateBusiness">
+      <soap12:operation soapAction="KYCApi/CreateBusiness" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateDirector">
+      <soap12:operation soapAction="KYCApi/CreateDirector" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllBusinesses">
+      <soap12:operation soapAction="KYCApi/GetAllBusinesses" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerifyUserCredentials">
+      <soap12:operation soapAction="KYCApi/VerifyUserCredentials" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerifyUserOTP">
+      <soap12:operation soapAction="KYCApi/VerifyUserOTP" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateDepartment">
+      <soap12:operation soapAction="KYCApi/CreateDepartment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateRole">
+      <soap12:operation soapAction="KYCApi/CreateRole" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateUser">
+      <soap12:operation soapAction="KYCApi/CreateUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDepartments">
+      <soap12:operation soapAction="KYCApi/GetDepartments" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRoles">
+      <soap12:operation soapAction="KYCApi/GetRoles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsers">
+      <soap12:operation soapAction="KYCApi/GetUsers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidateNationalId">
+      <soap12:operation soapAction="KYCApi/ValidateNationalId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckUserSanctionStatus">
+      <soap12:operation soapAction="KYCApi/CheckUserSanctionStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClientDetails">
+      <soap12:operation soapAction="KYCApi/GetClientDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="KYCApi">
+    <wsdl:port name="KYCApiSoap" binding="tns:KYCApiSoap">
+      <soap:address location="https://localhost:44371/KYCApi.asmx" />
+    </wsdl:port>
+    <wsdl:port name="KYCApiSoap12" binding="tns:KYCApiSoap12">
+      <soap12:address location="https://localhost:44371/KYCApi.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,79 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Layout.master.cs" Inherits="PegasusKYCPortal.Layout" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>Pegasus Technologies KYC
+    </title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="w-full">
+    <form id="form1" runat="server">
+        <header class="fixed top-0 left-0 w-full bg-white py-2.5 border-b-2 px-10">
+            <div class="flex justify-between items-center container">
+                <div class="font-medium text-xl flex gap-1 items-center">
+                    <!-- <img src="logo.png" class="size-[35px] -mt-2"/> -->
+                    <p class="text-blue-700">KYC<span class="text-[#d71a21]">Portal</span></p>
+                </div>
+
+                <div>
+                    <button class="bg-[#06498e] text-white px-5 py-1.5 rounded-md">Logout</button>
+                </div>
+            </div>
+
+        </header>
+        <aside class="h-screen border-r fixed top-[56px] w-[320px] ">
+            <div class="h-[212px] flex justify-center items-center flex-col border-b">
+                <img src="pegasus.jpg" class=" -mt-[10px] size-[150px]" style="border-radius: 50%" /> 
+                <p>romeojacobson</p>
+                <p>romeojacobson@pegasus.com</p>
+            </div>
+
+            <asp:Panel ID="pnlSuperAdmin" runat="server" Visible="true">
+                <nav class="flex flex-col ">
+                    <a class="px-2 py-2 bg-opacity-50 bg-blue-50 border-b hover:bg-blue-600 hover:text-white hover:font-medium" href="AdminDashboard.aspx">Dashboard</a>
+                    <a class="px-2 py-2 bg-opacity-50 bg-blue-50 border-b hover:bg-blue-600 hover:text-white hover:font-medium" href="CreateRole.aspx">Roles</a>
+                    <a class="px-2 py-2 bg-opacity-50 bg-blue-50 border-b hover:bg-blue-600 hover:text-white hover:font-medium" href="Departments.aspx">Departments</a>
+                    <a class="px-2 py-2 bg-opacity-50 bg-blue-50 border-b hover:bg-blue-600 hover:text-white hover:font-medium" href="CreateUser.aspx">Create User </a>
+                </nav>
+            </asp:Panel>
+
+            <asp:Panel ID="pnlBusinessTeam" runat="server" Visible="false">
+                <nav class="flex flex-col ">
+                    <a class="px-2 py-2 bg-opacity-50 bg-blue-50 border-b hover:bg-blue-600 hover:text-white hover:font-medium" href="ViewClients.aspx">View Clients</a>
+                    <a class="px-2 py-2 bg-opacity-50 bg-blue-50 border-b hover:bg-blue-600 hover:text-white hover:font-medium" href="CreateClient.aspx">Create Client</a>
+                </nav>
+            </asp:Panel>
+            <asp:Panel ID="pnlLegal" runat="server" Visible="false">
+                <nav class="flex flex-col ">
+                    <a class="px-2 py-2 bg-opacity-50 bg-blue-50 border-b hover:bg-blue-600 hover:text-white hover:font-medium" href="AdminDashboard">Approved Businesses </a>
+                    <a class="px-2 py-2 bg-opacity-50 bg-blue-50 border-b hover:bg-blue-600 hover:text-white hover:font-medium" href="AdminDashboard">Pending Approvals </a>
+                    <a class="px-2 py-2 bg-opacity-50 bg-blue-50 border-b hover:bg-blue-600 hover:text-white hover:font-medium" href="AdminDashboard">Rejected Businesses  </a>
+                </nav>
+            </asp:Panel>
+            <asp:Panel ID="pnlFinance" runat="server" Visible="false">
+                <nav class="flex flex-col ">
+                    <a class="px-2 py-2 bg-opacity-50 bg-blue-50 border-b hover:bg-blue-600 hover:text-white hover:font-medium" href="AdminDashboard">Clients </a>
+                </nav>
+            </asp:Panel>
+
+            <asp:Panel ID="pnlManagement" runat="server" Visible="false">
+                <nav class="flex flex-col ">
+                    <a class="px-2 py-2 bg-opacity-50 bg-blue-50 border-b hover:bg-blue-600 hover:text-white hover:font-medium" href="AdminDashboard">Clients </a>
+                </nav>
+            </asp:Panel>
+
+
+        </aside>
+
+
+        <main class="min-h-[calc(100svh-56px)] mt-[56px] ml-[324px] pt-5">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+        </main>
+
+    </form>
+</body>
+</html>
