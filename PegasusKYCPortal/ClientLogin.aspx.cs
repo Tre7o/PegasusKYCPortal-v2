@@ -10,8 +10,8 @@ using System.Web.UI.WebControls;
 namespace PegasusKYCPortal
 {
     public partial class ClientLogin : System.Web.UI.Page
-    { 
-       KYCApi api = new KYCApi();
+    {
+        KYCApi api = new KYCApi();
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -38,22 +38,21 @@ namespace PegasusKYCPortal
                 if (!response.Message.ToUpper().Contains("SUCCESSFULLY"))
                 {
                     DisplayMessage(response.Message, false);
-
                 }
                 else
                 {
                     DisplayMessage(response.Message, true);
                     txtOTP.Text = string.Empty;
 
-                  //  Session["RoleId"] = response.userDTO.RoleId ?? "";
-                  //  Session["Name"] = response.userDTO.FirstName + " " + response.userDTO.LastName;
-                  //  Session["UserId"] = response.userDTO.UserId;
-                  // Session["Email"] = response.userDTO.Email;
-                  //  Session["DepartmentId"] = response.userDTO.DepartmentId;
+                    //  Session["RoleId"] = response.userDTO.RoleId ?? "";
+                    Session["Name"] = response.userDTO.LastName;
+                    Session["ClientID"] = response.userDTO.UserId;
+                    Session["ClientEmail"] = response.userDTO.Email;
 
-                    
-                   Response.Redirect("ClientDashboard.aspx");
-                 
+
+
+                    Response.Redirect("ClientDashboard.aspx");
+
                 }
             }
 
@@ -61,7 +60,7 @@ namespace PegasusKYCPortal
 
         protected void login_Click(object sender, EventArgs e)
         {
-         
+
 
             string email = txtEmail.Text;
             string password = txtPassword.Text;
@@ -90,7 +89,7 @@ namespace PegasusKYCPortal
 
                     pnlOTP.Visible = true;
                     pnlForm.Visible = false;
-                    
+
                 }
                 else
                 {

@@ -22,7 +22,7 @@ namespace PegasusKYCPortal
 
 
             int roleId = int.Parse(Session["RoleId"].ToString());
-          
+
 
             lblUsername.Text = Session["Name"].ToString();
             lblEmail.Text = Session["Email"].ToString();

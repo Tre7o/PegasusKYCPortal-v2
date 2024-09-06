@@ -4,16 +4,66 @@
 
 <html>
 <head runat="server">
-    <title></title>
-    <asp:ContentPlaceHolder ID="head" runat="server">
-    </asp:ContentPlaceHolder>
+    <title>Pegasus Technologies KYC
+    </title>
+    <link href="pegasus.jpg" rel="shortcut icon" type="image/x-icon" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="w-full">
     <form id="form1" runat="server">
-        <div>
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        <header class="fixed top-0 left-0 w-full bg-white py-2.5 border-b-2 px-10">
+            <div class="flex justify-between items-center w-full px-[50px]">
+                <div class="font-medium text-xl flex gap-1 items-center">
+                    <!-- <img src="logo.png" class="size-[35px] -mt-2"/> -->
+                    <p class="text-blue-700">KYC<span class="text-[#d71a21]">Portal</span></p>
+                </div>
+
+                <div>
+                    <asp:Button ID="Logout" runat="server" Text="Logout" CssClass="bg-[#d71a21] text-white px-5 py-1.5 rounded-md cursor-pointer" OnClick="Logout_Click"></asp:Button>
+                </div>
+            </div>
+
+        </header>
+        <aside class="h-screen border-r fixed top-[56px] w-[320px] ">
+            <div class="h-[212px] flex justify-center items-center flex-col border-b">
+                <img src="pegasus.jpg" class=" -mt-[10px] size-[150px]" style="border-radius: 50%" />
+                <asp:Label runat="server" ID="lblUsername"></asp:Label>
+                <asp:Label runat="server" ID="lblEmail"></asp:Label>
+            </div>
+
+            <asp:Panel ID="pnlClient" runat="server" Visible="true">
+                <nav class="flex flex-col ">
+                    <a class="px-2 py-2 bg-opacity-50 bg-blue-50 border-b hover:bg-blue-600 hover:text-white hover:font-medium" href="ViewClients.aspx?status=pending">Add Business</a>
+                    <a class="px-2 py-2 bg-opacity-50 bg-blue-50 border-b hover:bg-blue-600 hover:text-white hover:font-medium" href="Contracts.aspx">Business Status</a>
+                 </nav>
+            </asp:Panel>
+
+
+
+
+
+        </aside>
+
+
+
+        <main class="min-h-[calc(100svh-56px)] mt-[56px] ml-[324px] pt-5">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
-        </div>
+        </main>
     </form>
+
+    <script type="text/javascript">
+        (function () {
+            if (window.history && window.history.pushState) {
+                window.history.pushState(null, null, document.URL);
+                window.addEventListener('popstate', function () {
+                    window.history.pushState(null, null, document.URL);
+                });
+            }
+        })();
+</script>
 </body>
 </html>
+
